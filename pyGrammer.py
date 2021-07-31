@@ -1,3 +1,21 @@
+# 2차원 리스트 정렬
+a = [[2, 'd', 'a'], [5, 's', 'b'], [9, 'f', 'f'], [3, 'i', 'h'], [7, 'z', 'v']]
+a.sort()
+print(a)
+print(len(a))
+print(a[1:])
+for i in range(len(a)):
+    a[i].remove(a[i][0])
+    print(a[i])
+    a[i].sort()
+    for j in range(len(a[i])):
+        print(a[i][j])
+
+# 리스트 원하는 부분만 정렬
+a = [ 3, 2, 5, 2, 5, 7, 9, 0, 34, 4, 2]
+a[1:].sort()
+print()
+
 # enumerate
 a = [[1, 2], [3, 4], [5, 6]]
 for i, j in enumerate(a):
