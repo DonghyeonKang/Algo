@@ -1,3 +1,9 @@
+# find index tuple in list
+q = [('a', 1), ('f', 32), ('dg', 5), ('j', 0)]
+for num, data in enumerate(q):
+    if "dg" in data:
+        print(num)
+
 # 2차원 리스트 정렬
 a = [[2, 'd', 'a'], [5, 's', 'b'], [9, 'f', 'f'], [3, 'i', 'h'], [7, 'z', 'v']]
 a.sort()
