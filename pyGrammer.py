@@ -1,3 +1,9 @@
+# list add
+a = [123]
+b = [456, 213, 111, 554]
+c = a + b[2:]
+print(c)
+
 # find index tuple in list
 q = [('a', 1), ('f', 32), ('dg', 5), ('j', 0)]
 for num, data in enumerate(q):
