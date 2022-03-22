@@ -9,22 +9,15 @@ lenV = n
 
 print("<", end="")
 while(lenV > 0):
-    if cnt == k:
-        if lenV == 1:
-            print(v[p], end="")
-        else:
-            print(v[p], end=", ")
-        del v[p]
-        cnt = 1
-        lenV -= 1
+    for i in range(k - 1):
+        v.append(v[0])
+        del v[0]
 
-    if lenV - 1 == p:
-        p = 0
-        cnt += 1
-    elif lenV - 1 < p:
-        p = 0
-        cnt = 1
+    if lenV == 1:
+        print(v[0], end="")
     else:
-        cnt += 1
-        p += 1
+        print(v[0], end=", ")
+
+    del v[0]
+    lenV -= 1
 print(">", end="")
