@@ -4,17 +4,28 @@
 # 단, 아파트에는 0층부터 있고 각층에는 1호부터 있으며, 0층의 i호에는 i명이 산다.
 import sys
 
-def GetNum(k, n): # recursive function 
-    if k == 0:
-        return n
-    if n == 1:
-        return 1
-    return (GetNum(k - 1, n) + GetNum(k, n - 1))    # k,n 이 3,3이고 이것은 2,3 + 3,2 이다. 
+n = int(sys.stdin.readline())    # input test case
+t = [] 
+for i in range(n):  # input int num k, n
+    tmp = []
+    for j in range(2):
+        tmp.append(int(sys.stdin.readline()))
+    t.append(tmp)
 
-T = int(sys.stdin.readline())    # input test case
-result = [] # result list
-for i in range(T):  # input int num k, n
-    result.append(GetNum(int(sys.stdin.readline()), int(sys.stdin.readline()))) # append result
+a = [[0 for _ in range(14)] for _ in range(15)]
 
-for i in range(T):  # print result list
-    print(result[i])    
+# 0호 라인
+for i in range(15):
+    a[i][0] = 1
+
+# 1층 라인
+for i in range(14):
+    a[0][i] = i + 1
+
+# 나머지 채우기
+for i in range(1, 14):
+    for j in range(1, 15):
+        a[j][i] = sum(a[j - 1][:i + 1])
+
+for i in t:
+    print(a[i[0]][i[1] - 1])
