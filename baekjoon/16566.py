@@ -1,27 +1,38 @@
 import sys
 
-n, m, k = map(int, sys.stdin.readline().rstrip().split())
-c = sys.stdin.readline().rstrip().split()
-c.sort()
-ks = sys.stdin.readline().rstrip().split()
-nodes = []
+n, m, k = map(int, sys.stdin.readline().split())
+parent = [i for i in range(n)]
+
+cards = list(map(int, sys.stdin.readline().split()))
+cards.sort()
+chulsoo = list(map(int, sys.stdin.readline().split()))
 
 def bs(num):
-    global nodes
     start = 0
-    end = len(nodes)
+    end = len(cards)
 
-    while(start > end):
+    while(start <= end):
         mid = (start + end) // 2
-        if nodes[mid] == num:
-            break
-        elif nodes[mid] < num:
+        if cards[mid] <= num:
             start = mid + 1 
-        elif nodes[mid] > num:
+        else:
             end = mid - 1
+    return start
 
-    return nodes.pop(mid)
+def find(x):
+    if x != parent[x]:
+        parent[x] = find(parent[x])
+        return parent[x]
+    return x
 
-for i in range(len(ks)):
-    print(bs(ks[i]))
+def union(a, b):
+    x, y = find(a), find(b)
+    if x<y: parent[x] = y
+    else: parent[y] = x
+
+for i in chulsoo:
+    idx = bs(i)
+    idx = find(idx)
+    print(cards[idx])
+    union(idx, idx + 1)
     
