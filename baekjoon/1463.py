@@ -1,47 +1,16 @@
-# 1로 만들기
-import sys
+import sys 
 
-n = int(sys.stdin.readline().rstrip())
+n = int(sys.stdin.readline())
+dp = [0]
 
-# 3으로 나누어 떨어지면 3으로 나눈다. 
-# 2로 나누어 떨어지면 2로 나눈다. 
-# 1을 뺀다. 
+for i in range(1, n + 1):
+    tmp = dp[-1] + 1
+    
+    if i % 2 == 0:
+        tmp = min(dp[i // 2] + 1, tmp)
 
-cnt = 0
-while(n > 10):
-    print(n)
-    if n % 3 == 0:
-        cnt += 1
-        n = n // 3
-        continue
-    if n % 2 == 0:
-        cnt += 1
-        n = n // 2
-        continue
-    cnt += 1
-    n = n - 1
-
-while(n > 3):
-    print(n)
-    if n % 3 == 0:
-        cnt += 1
-        n = n // 3
-        continue
-    if (n - 1) % 3 == 0:
-        cnt += 2
-        n = (n - 1) // 3
-        continue
-    if n % 2 == 0:
-        cnt += 1
-        n = n // 2
-        continue
-    cnt += 1
-    n = n - 1
-
-
-if n == 1:
-    print(cnt)
-else:
-    print(cnt + 1)
-
-# ------------------ 40일때 최소가 아님. -1 횟수가 너무 많음
+    if i % 3 == 0:
+        tmp = min(dp[i // 3] + 1, tmp)
+    
+    dp.append(tmp)
+print(dp[n] - 1)
